@@ -1,15 +1,19 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import MyNavBar from './components/MyNavBar.jsx';
+import "bootstrap/dist/css/bootstrap.min.css";
+import MyNavBar from "./components/MyNavBar.jsx";
+import { Container } from "react-bootstrap";
+import {BrowserRouter as Router} from"react-router-dom"
 
-import './App.css';
-import SearchBar from './components/SearchBar.jsx';
+import "./App.css";
+import SearchBar from "./components/SearchBar.jsx";
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <MyNavBar />
-      <SearchBar />
-    </div>
+      <Container className="d-flex justify-content-center">
+        <SearchBar />
+      </Container>
+    </Router>
   );
 }
 

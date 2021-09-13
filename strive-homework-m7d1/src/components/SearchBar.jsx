@@ -1,38 +1,41 @@
-import {Form, Button, FormControl, Container} from 'react-bootstrap'
-import { useState, useEffect } from 'react'
-
+import { Form, Button, FormControl} from "react-bootstrap";
+import { useState, useEffect } from "react";
 
 const SearchBar = () => {
+  const [searchValue, setSearchValue] = useState("");
 
-    const [searchValue, setSearchValue] = useState("")
+  useEffect(() => {
+    getData();
+  }, [searchValue]);
 
-    useEffect(() => {
-        getData()
-    }, [searchValue])
-
-    const getData = async () => {
-        try {
-            const response = await fetch("https://remotive.io/api/remote-jobs?search=front%20end")
-            if (response.ok) {
-                let data = await response.json()
-                console.log(data);
-            }
-        } catch (error) {
-            console.log(error);
-        }
+  const getData = async () => {
+    try {
+      const response = await fetch(
+        `https://strive-jobs-api.herokuapp.com/jobs?title=developer`
+      );
+      if (response.ok) {
+        let {data} = await response.json();
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    return (
-        <Container className="d-flex justify-content-center">
-            <Form inline>
-      <FormControl  type="text"
-      value={searchValue} 
-      onChange={e => setSearchValue(e.target.value)}
-      placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-success">Search</Button>
-    </Form>
-    </Container>
-    )
-}
+  return (
+    
+      <Form inline>
+        <FormControl
+          type="text"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+          placeholder="Search"
+          className="mr-sm-2"
+        />
+        <Button variant="outline-success">Search</Button>
+      </Form>
+    
+  );
+};
 
-export default SearchBar
+export default SearchBar;
