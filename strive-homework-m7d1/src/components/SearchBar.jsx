@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react'
 
 const SearchBar = () => {
 
-    const {searchValue, setSearchValue} = useState("")
+    const [searchValue, setSearchValue] = useState("")
 
     useEffect(() => {
         getData()
     }, [searchValue])
-    
+
     const getData = async () => {
         try {
             const response = await fetch("https://remotive.io/api/remote-jobs?search=front%20end")
