@@ -12,6 +12,14 @@ const mainReducer = (state = intialSate, action) => {
             },
         }
         
+        case 'REMOVE_FAV_COMPANY':
+        return {
+            ...state,
+            favCompany: {
+                ...state.favCompany,
+                company:state.favCompany.company.filter((book, i) => i !== action.payload),
+            },
+        }
       default:
           return state
     }
